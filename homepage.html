@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>KINETIC_ARCHITECT // Ak-Jiwi Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#98cbff",
+              "on-secondary": "#00363d",
+              "error": "#ffb4ab",
+              "primary-fixed": "#cfe5ff",
+              "tertiary-container": "#a178ff",
+              "on-error-container": "#ffdad6",
+              "surface": "#0e141a",
+              "surface-container-high": "#252b31",
+              "primary-container": "#0097ec",
+              "on-tertiary-container": "#34007f",
+              "on-error": "#690005",
+              "primary-fixed-dim": "#98cbff",
+              "secondary": "#bdf4ff",
+              "on-primary": "#003354",
+              "background": "#0e141a",
+              "surface-variant": "#2f353c",
+              "surface-dim": "#0e141a",
+              "secondary-fixed": "#9cf0ff",
+              "inverse-surface": "#dde3ec",
+              "outline-variant": "#414754",
+              "on-tertiary-fixed": "#23005b",
+              "on-secondary-fixed": "#001f24",
+              "inverse-on-surface": "#2b3138",
+              "on-secondary-container": "#00616d",
+              "on-primary-container": "#002c4a",
+              "outline": "#8b90a0",
+              "on-surface": "#dde3ec",
+              "surface-tint": "#98cbff",
+              "surface-container": "#1a2027",
+              "secondary-container": "#00e3fd",
+              "on-background": "#dde3ec",
+              "on-tertiary-fixed-variant": "#5700c9",
+              "surface-bright": "#343a41",
+              "secondary-fixed-dim": "#00daf3",
+              "tertiary-fixed-dim": "#d1bcff",
+              "error-container": "#93000a",
+              "tertiary": "#d1bcff",
+              "on-tertiary": "#3c0090",
+              "on-primary-fixed-variant": "#004a77",
+              "surface-container-lowest": "#090f15",
+              "on-primary-fixed": "#001d33",
+              "on-surface-variant": "#c1c6d7",
+              "inverse-primary": "#00629d",
+              "surface-container-low": "#161c22",
+              "surface-container-highest": "#2f353c",
+              "on-secondary-fixed-variant": "#004f58",
+              "tertiary-fixed": "#e9ddff"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(47, 53, 60, 0.4);
+        backdrop-filter: blur(20px);
+      }
+      .bg-grid-pattern {
+        background-image: radial-gradient(circle, #414754 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      .kinetic-gradient {
+        background: linear-gradient(135deg, #98cbff 0%, #0097ec 100%);
+      }
+      
+      /* Section Scroll Animation Styles */
+      .section-fade {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform, opacity;
+      }
+      .section-fade.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Exit animation (fade out) */
+      .section-fade.hidden-above {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      .section-fade.hidden-below {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      /* Kinetic Card Hover Effects */
+      .kinetic-card {
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+        transform-style: preserve-3d;
+      }
+      .kinetic-card:hover {
+        transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(152, 203, 255, 0.1);
+      }
+      .kinetic-card-img {
+        transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .kinetic-card:hover .kinetic-card-img {
+        transform: scale(1.05) translateZ(20px);
+      }
+
+      /* Sidebar Navigation Styles */
+      .sidebar-nav-item {
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .sidebar-nav-item::before {
+        content: '';
+        position: absolute;
+        left: -2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0px;
+        height: 2px;
+        background: #98cbff;
+        transition: all 0.3s ease;
+      }
+      .sidebar-nav-item.active {
+        color: #98cbff;
+        padding-left: 1rem;
+      }
+      .sidebar-nav-item.active::before {
+        width: 1.5rem;
+        left: -1rem;
+      }
+      
+      @media (min-width: 1024px) {
+        .main-content-offset {
+          margin-left: 280px;
+        }
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- Persistent Left Sidebar Navigation -->
+<aside class="fixed top-0 left-0 h-screen w-[280px] bg-surface-container-lowest border-r border-outline-variant/20 z-[100] hidden lg:flex flex-col p-10 justify-between">
+    <div class="flex flex-col gap-12">
+        <div class="text-2xl font-bold tracking-tighter text-primary font-headline uppercase leading-none">
+            KINETIC<br/>ARCHITECT
+        </div>
+        <nav class="flex flex-col gap-8">
+            <a class="sidebar-nav-item font-headline font-bold tracking-widest text-on-surface-variant hover:text-primary uppercase text-sm active" data-section="hero" href="#hero">01 Hero</a>
+            <a class="sidebar-nav-item font-headline font-bold tracking-widest text-on-surface-variant hover:text-primary uppercase text-sm" data-section="about" href="#about">02 About</a>
+            <a class="sidebar-nav-item font-headline font-bold tracking-widest text-on-surface-variant hover:text-primary uppercase text-sm" data-section="skills" href="#skills">03 Skills</a>
+            <a class="sidebar-nav-item font-headline font-bold tracking-widest text-on-surface-variant hover:text-primary uppercase text-sm" data-section="projects" href="#projects">04 Projects</a>
+            <a class="sidebar-nav-item font-headline font-bold tracking-widest text-on-surface-variant hover:text-primary uppercase text-sm" data-section="contact" href="#contact">05 Contact</a>
+        </nav>
+    </div>
+    <div class="flex flex-col gap-8">
+        <button class="bg-primary text-on-primary px-6 py-4 font-headline font-bold text-xs tracking-[0.2em] rounded transition-all hover:shadow-[0_0_20px_rgba(152,203,255,0.3)] active:scale-95 text-center">
+            DOWNLOAD RESUME
+        </button>
+        <div class="text-[10px] font-label text-outline-variant uppercase tracking-[0.2em] leading-relaxed">
+            © 2024 PRECISION<br/>ENGINEERING // V1.0
+        </div>
+    </div>
+</aside>
+<!-- Mobile Navigation (Top Bar) -->
+<nav class="fixed top-0 w-full z-[90] bg-surface/80 backdrop-blur-md lg:hidden border-b border-outline-variant/10">
+    <div class="flex justify-between items-center w-full px-6 py-4">
+        <div class="text-lg font-bold tracking-tighter text-primary font-headline uppercase">
+            KINETIC_ARCHITECT
+        </div>
+        <button class="bg-primary text-on-primary px-4 py-2 font-headline font-bold text-[10px] tracking-widest rounded">
+            RESUME
+        </button>
+    </div>
+</nav>
+<main class="main-content-offset">
+    <!-- Hero Section -->
+    <section class="section-fade relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-0" id="hero">
+        <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-8 w-full text-center md:text-left">
+            <div class="flex flex-col gap-6">
+                <div class="inline-flex items-center gap-3 px-3 py-1 bg-surface-container-highest/50 border border-outline-variant/20 self-center md:self-start rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    <span class="text-xs font-label uppercase tracking-widest text-secondary font-semibold">System Active // Frontend Developer</span>
+                </div>
+                <h1 class="font-headline font-bold text-5xl md:text-8xl tracking-tight leading-none text-on-surface">
+                    Building the future <br/>
+                    <span class="text-transparent bg-clip-text kinetic-gradient">experiences</span> <br/>
+                    with Blue Code
+                </h1>
+                <p class="max-w-2xl text-lg md:text-xl text-on-surface-variant leading-relaxed">
+                    악지위 • 프론트엔드 개발자 • 기억에 남는 웹사이트와 향상된 사용자 경험(UX)을 만드는 개발자
+                </p>
+                <div class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
+                    <button class="kinetic-gradient text-on-primary px-8 py-4 font-headline font-bold tracking-widest rounded-lg flex items-center gap-2 transition-transform hover:-translate-y-1">
+                        CONTACT <span class="material-symbols-outlined text-xl">mail</span>
+                    </button>
+                    <button class="bg-transparent border border-primary/20 text-primary px-8 py-4 font-headline font-bold tracking-widest rounded-lg hover:border-primary transition-all flex items-center gap-2">
+                        GITHUB <span class="material-symbols-outlined text-xl">code</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+            <span class="text-[10px] font-label tracking-[0.3em] uppercase">Scroll to explore</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent"></div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section class="section-fade py-32 relative bg-surface-container-low" id="about">
+        <div class="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="aspect-square bg-surface-container-highest rounded-2xl overflow-hidden group">
+                    <img class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-700 scale-110 group-hover:scale-100" data-alt="abstract high-tech computer code on a dark screen with vibrant blue and cyan glowing highlights and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaLdljanqDTVVX2FtGJ0jILAgh5hg8Q67qCQL4s1_DJZKNaaTlqxRmXEsgIUa-F3lb-sDsZLuEA8g11x29UQwU6hntcENthbjKsgxGZqq93D5u7suWZOhouoaOx-c8-d90MK1sLlzM5KkhJt1nnBguZuEruxT1kZnJIOUUpgi2y-9kdB6qjrH_2ARDmtm1FGVqNCf-OErBuEtnZiXR871jGcfq1LIC1tR0nBRQM7eWRgOk7meBEA1sdFTNQJLe4U9lKDzgbEucQI"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+                </div>
+                <div class="absolute -top-4 -right-4 text-outline-variant font-mono text-xs">+ 37.5665° N, 126.9780° E</div>
+            </div>
+            <div class="flex flex-col gap-8">
+                <div class="text-secondary font-label font-bold tracking-[0.2em] text-sm uppercase">01 // ABOUT ME</div>
+                <h2 class="font-headline font-bold text-4xl text-on-surface leading-tight">
+                    뛰어난 UI와 인터랙션을 구현하고, 문제 해결을 통해 사용자 요구를 충족하는 데 전념합니다.
+                </h2>
+                <p class="text-on-surface-variant text-lg leading-relaxed">
+                    I focus on front-end development, UX optimization, and building responsive web applications that scale. My collaboration style is built on clean code, thorough documentation, and seamless team communication.
+                </p>
+                <div class="grid grid-cols-2 gap-6 mt-4">
+                    <div class="p-6 bg-surface-container-highest/30 rounded-lg">
+                        <div class="text-primary font-bold text-2xl font-headline mb-1">UX</div>
+                        <div class="text-xs font-label uppercase tracking-widest text-outline">Optimization</div>
+                    </div>
+                    <div class="p-6 bg-surface-container-highest/30 rounded-lg">
+                        <div class="text-primary font-bold text-2xl font-headline mb-1">Clean</div>
+                        <div class="text-xs font-label uppercase tracking-widest text-outline">Architecture</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Skills Section -->
+    <section class="section-fade py-32 relative bg-surface" id="skills">
+        <div class="max-w-6xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div class="flex flex-col gap-4">
+                    <div class="text-secondary font-label font-bold tracking-[0.2em] text-sm uppercase">02 // TECHNICAL STACK</div>
+                    <h2 class="font-headline font-bold text-5xl text-on-surface">The Toolkit</h2>
+                </div>
+                <p class="max-w-md text-on-surface-variant text-right">
+                    Constantly evolving with the latest technologies to deliver high-performance digital solutions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                <div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6 group hover:translate-y-[-4px] transition-transform">
+                    <span class="material-symbols-outlined text-primary text-4xl">terminal</span>
+                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Languages</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">HTML5</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">CSS3</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-primary">JAVASCRIPT ES6+</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-primary">TYPESCRIPT</span>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6 group hover:translate-y-[-4px] transition-transform">
+                    <span class="material-symbols-outlined text-primary text-4xl">layers</span>
+                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Frameworks</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-secondary">REACT.JS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-secondary">NEXT.JS</span>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6 group hover:translate-y-[-4px] transition-transform">
+                    <span class="material-symbols-outlined text-primary text-4xl">palette</span>
+                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Styling</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">SCSS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">STYLED-COMPONENTS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">TAILWIND CSS</span>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6 group hover:translate-y-[-4px] transition-transform">
+                    <span class="material-symbols-outlined text-primary text-4xl">construction</span>
+                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">GIT</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">VS CODE</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">HBUILDER</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Projects Section -->
+    <section class="section-fade py-32 relative bg-surface-container-lowest" id="projects">
+        <div class="max-w-6xl mx-auto px-8">
+            <div class="mb-20 text-center">
+                <div class="text-secondary font-label font-bold tracking-[0.2em] text-sm uppercase mb-4">03 // SELECTED WORKS</div>
+                <h2 class="font-headline font-bold text-5xl text-on-surface">Precision Projects</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Project 1: Frog Adventure -->
+                <div class="kinetic-card group relative bg-surface-container-low rounded-xl overflow-hidden border border-transparent hover:border-primary/30 transition-all duration-500">
+                    <!-- 【已修改】图片链接指向 project1.html -->
+                    <a class="aspect-video block relative overflow-hidden bg-surface-container-low" href="project1.html">
+                        <img class="kinetic-card-img w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" data-alt="Screenshot of Frog Adventure game showing vibrant pixel art forest environment with a green frog character mid-jump over dynamic obstacles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8jIh6EH1OMgKUKihd6OgQxDvsWG842MJ_8VafQdRu_JT7S--LcjaOg6671uVCRenxWjN8o2Z06HTPsG9M_idR8X9DUffzillLV7RT05nrfgkpidWyr-1TTP3oL7IYHfDP3cZapwWw7ajnigyFjghknoMbZVMD3pHIgDShv6_33atS1evvAHxsklacJI0bRBitr1Jkx6nTGiAAxtg84AVFu1SRo1dlTnSMs_OUiE_sfs7L-QzugjlOTo6UU0CQ5FB_ZXk96f02y-w"/>
+                        <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </a>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <!-- 【已修改】标题链接指向 project1.html -->
+                            <a class="hover:text-primary transition-colors" href="project1.html">
+                                <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight uppercase">Frog Adventure</h3>
+                            </a>
+                            <div class="flex gap-2">
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Unity</span>
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">C#</span>
+                            </div>
+                        </div>
+                        <p class="text-on-surface-variant mb-8 line-clamp-2">
+                            A high-stakes 2D platformer featuring a heroic frog navigating perilous paths with precision-tuned physics and responsive controls.
+                        </p>
+                        <div class="flex gap-4">
+                            <!-- 【已修改】按钮链接指向 project1.html -->
+                            <a class="flex-1 kinetic-gradient text-on-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 transition-transform hover:-translate-y-1" href="project1.html">
+                                View Details <span class="material-symbols-outlined text-sm">open_in_new</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Kinetic Platformer -->
+                <div class="kinetic-card group relative bg-surface-container-low rounded-xl overflow-hidden border border-transparent hover:border-primary/30 transition-all duration-500">
+                    <!-- 【已修改】图片链接指向 project2.html -->
+                    <a class="aspect-video block relative overflow-hidden bg-surface-container-low" href="project2.html">
+                        <img class="kinetic-card-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic screenshot of a neon-lit 2D platformer level with a sleek cat-like protagonist jumping across glowing floating platforms in a futuristic city." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2lWtAOx9WAdsfu2o93H5x0HPIH167B24AyBAstu5XaQsthmJPoUG8lUTCeCKAeIRbyfzSS82uqeylU_XL_4tvoTkHfDCBdK4TSMwx1kHmPkHnAf-SRYs0gWjYL0-9SGTML8uTm1qSXHOOIbA_kle44L5oInGlHNA4s-dZuvQjb9baZ006LH11nZIrb8efTy2qygW-HgDihxaZGAP_8VPoNFcA2-JAX15KBPr75gOGNnsVQv-6nSmkc5ZurttIujizrrL8g7rWxeY"/>
+                        <div class="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </a>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <!-- 【已修改】标题链接指向 project2.html -->
+                            <a class="hover:text-primary transition-colors" href="project2.html">
+                                <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight uppercase">Kinetic Platformer</h3>
+                            </a>
+                            <div class="flex gap-2">
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Unity 2023</span>
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Neon UI</span>
+                            </div>
+                        </div>
+                        <p class="text-on-surface-variant mb-8 line-clamp-2">
+                            A classic 2D platformer reimagined with high-fidelity physics and neon aesthetics, engineered for sub-millisecond input response.
+                        </p>
+                        <div class="flex gap-4">
+                            <!-- 【已修改】按钮链接指向 project2.html -->
+                            <a class="flex-1 kinetic-gradient text-on-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 transition-transform hover:-translate-y-1" href="project2.html">
+                                View Details <span class="material-symbols-outlined text-sm">open_in_new</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="section-fade py-32 relative bg-surface overflow-hidden" id="contact">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
+            <span class="font-headline font-extrabold text-[15vw] tracking-tighter uppercase whitespace-nowrap">CONTACT_ME</span>
+        </div>
+        <div class="max-w-4xl mx-auto px-8 relative z-10 text-center">
+            <div class="text-secondary font-label font-bold tracking-[0.2em] text-sm uppercase mb-6">04 // INQUIRIES</div>
+            <h2 class="font-headline font-bold text-5xl md:text-7xl text-on-surface mb-12 tracking-tight">Let's build the <br/> future together.</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a class="flex flex-col items-center gap-3 p-6 bg-surface-container-low rounded-xl group hover:bg-primary-container transition-all" href="mailto:contact@example.com">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">mail</span>
+                    <span class="text-[10px] font-label font-bold tracking-widest uppercase group-hover:text-on-primary">Email</span>
+                </a>
+                <a class="flex flex-col items-center gap-3 p-6 bg-surface-container-low rounded-xl group hover:bg-primary-container transition-all" href="#">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">code</span>
+                    <span class="text-[10px] font-label font-bold tracking-widest uppercase group-hover:text-on-primary">GitHub</span>
+                </a>
+                <a class="flex flex-col items-center gap-3 p-6 bg-surface-container-low rounded-xl group hover:bg-primary-container transition-all" href="#">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">diversity_3</span>
+                    <span class="text-[10px] font-label font-bold tracking-widest uppercase group-hover:text-on-primary">LinkedIn</span>
+                </a>
+                <a class="flex flex-col items-center gap-3 p-6 bg-surface-container-low rounded-xl group hover:bg-primary-container transition-all" href="#">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">rss_feed</span>
+                    <span class="text-[10px] font-label font-bold tracking-widest uppercase group-hover:text-on-primary">Blog</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-[#161c22] w-full py-12 px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-6xl mx-auto">
+            <div class="font-['Space_Grotesk'] uppercase tracking-widest text-[#414754] font-bold">
+                KINETIC ARCHITECT
+            </div>
+            <div class="font-['Inter'] text-sm tracking-wide text-[#dde3ec] opacity-50">
+                © 2024 KINETIC ARCHITECT // PRECISION ENGINEERING
+            </div>
+            <div class="flex gap-8">
+                <a class="text-[#414754] hover:text-[#bdf4ff] transition-colors duration-200 text-sm font-label uppercase tracking-widest" href="#">GitHub</a>
+                <a class="text-[#414754] hover:text-[#bdf4ff] transition-colors duration-200 text-sm font-label uppercase tracking-widest" href="#">LinkedIn</a>
+                <a class="text-[#414754] hover:text-[#bdf4ff] transition-colors duration-200 text-sm font-label uppercase tracking-widest" href="#">Blog</a>
+            </div>
+        </div>
+    </footer>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Intersection Observer for Section Transitions (Fade In/Out)
+        const sections = document.querySelectorAll('.section-fade');
+        
+        const sectionObserverOptions = {
+            threshold: [0, 0.1, 0.9, 1],
+            rootMargin: '0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const rect = entry.boundingClientRect;
+                const windowHeight = window.innerHeight;
+                
+                // Determine if the section is mostly in view
+                if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+                    entry.target.classList.add('visible');
+                    entry.target.classList.remove('hidden-above', 'hidden-below');
+                } else {
+                    entry.target.classList.remove('visible');
+                    // Check if it's exiting above or below
+                    if (rect.top < 0) {
+                        entry.target.classList.add('hidden-above');
+                        entry.target.classList.remove('hidden-below');
+                    } else {
+                        entry.target.classList.add('hidden-below');
+                        entry.target.classList.remove('hidden-above');
+                    }
+                }
+            });
+        }, sectionObserverOptions);
+
+        sections.forEach(section => {
+            // Initial state: hidden-below unless it's the hero or currently visible
+            if (section.id !== 'hero') {
+                section.classList.add('hidden-below');
+            } else {
+                section.classList.add('visible');
+            }
+            sectionObserver.observe(section);
+        });
+
+        // Section Observer for Sidebar Navigation (Persistent Sync)
+        const navSections = document.querySelectorAll('section[id]');
+        const sidebarItems = document.querySelectorAll('.sidebar-nav-item');
+
+        const navObserverOptions = {
+            threshold: 0.4,
+            rootMargin: '-10% 0px -10% 0px'
+        };
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.getAttribute('id');
+                    sidebarItems.forEach(item => {
+                        item.classList.toggle('active', item.getAttribute('data-section') === activeId);
+                    });
+                }
+            });
+        }, navObserverOptions);
+
+        navSections.forEach(section => navObserver.observe(section));
+
+        // Smooth scroll parallax effect for project images (kept from original)
+        window.addEventListener('scroll', () => {
+            const projectImgs = document.querySelectorAll('.kinetic-card-img');
+            projectImgs.forEach(img => {
+                const rect = img.getBoundingClientRect();
+                const visible = rect.top < window.innerHeight && rect.bottom > 0;
+                if (visible) {
+                    const shift = (window.innerHeight / 2 - rect.top) * 0.05;
+                    img.style.transform = `translateY(${shift}px) scale(1.1)`;
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
