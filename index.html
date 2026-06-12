@@ -13,22 +13,53 @@
         theme: {
           extend: {
             colors: {
-              "primary": "#98cbff", "on-secondary": "#00363d", "error": "#ffb4ab",
-              "primary-fixed": "#cfe5ff", "tertiary-container": "#a178ff", "on-error-container": "#ffdad6",
-              "surface": "#0e141a", "surface-container-high": "#252b31", "primary-container": "#0097ec",
-              "on-tertiary-container": "#34007f", "on-error": "#690005", "primary-fixed-dim": "#98cbff",
-              "secondary": "#bdf4ff", "on-primary": "#003354", "background": "#0e141a",
-              "surface-variant": "#2f353c", "surface-dim": "#0e141a", "secondary-fixed": "#9cf0ff",
-              "inverse-surface": "#dde3ec", "outline-variant": "#414754", "on-tertiary-fixed": "#23005b",
-              "on-secondary-fixed": "#001f24", "inverse-on-surface": "#2b3138", "on-secondary-container": "#00616d",
-              "on-primary-container": "#002c4a", "outline": "#8b90a0", "on-surface": "#dde3ec",
-              "surface-tint": "#98cbff", "surface-container": "#1a2027", "secondary-container": "#00e3fd",
-              "on-background": "#dde3ec", "on-tertiary-fixed-variant": "#5700c9", "surface-bright": "#343a41",
-              "secondary-fixed-dim": "#00daf3", "tertiary-fixed-dim": "#d1bcff", "error-container": "#93000a",
-              "tertiary": "#d1bcff", "on-tertiary": "#3c0090", "on-primary-fixed-variant": "#004a77",
-              "surface-container-lowest": "#090f15", "on-primary-fixed": "#001d33", "on-surface-variant": "#c1c6d7",
-              "inverse-primary": "#00629d", "surface-container-low": "#161c22", "surface-container-highest": "#2f353c",
-              "on-secondary-fixed-variant": "#004f58", "tertiary-fixed": "#e9ddff"
+              "primary": "#98cbff",
+              "on-secondary": "#00363d",
+              "error": "#ffb4ab",
+              "primary-fixed": "#cfe5ff",
+              "tertiary-container": "#a178ff",
+              "on-error-container": "#ffdad6",
+              "surface": "#0e141a",
+              "surface-container-high": "#252b31",
+              "primary-container": "#0097ec",
+              "on-tertiary-container": "#34007f",
+              "on-error": "#690005",
+              "primary-fixed-dim": "#98cbff",
+              "secondary": "#bdf4ff",
+              "on-primary": "#003354",
+              "background": "#0e141a",
+              "surface-variant": "#2f353c",
+              "surface-dim": "#0e141a",
+              "secondary-fixed": "#9cf0ff",
+              "inverse-surface": "#dde3ec",
+              "outline-variant": "#414754",
+              "on-tertiary-fixed": "#23005b",
+              "on-secondary-fixed": "#001f24",
+              "inverse-on-surface": "#2b3138",
+              "on-secondary-container": "#00616d",
+              "on-primary-container": "#002c4a",
+              "outline": "#8b90a0",
+              "on-surface": "#dde3ec",
+              "surface-tint": "#98cbff",
+              "surface-container": "#1a2027",
+              "secondary-container": "#00e3fd",
+              "on-background": "#dde3ec",
+              "on-tertiary-fixed-variant": "#5700c9",
+              "surface-bright": "#343a41",
+              "secondary-fixed-dim": "#00daf3",
+              "tertiary-fixed-dim": "#d1bcff",
+              "error-container": "#93000a",
+              "tertiary": "#d1bcff",
+              "on-tertiary": "#3c0090",
+              "on-primary-fixed-variant": "#004a77",
+              "surface-container-lowest": "#090f15",
+              "on-primary-fixed": "#001d33",
+              "on-surface-variant": "#c1c6d7",
+              "inverse-primary": "#00629d",
+              "surface-container-low": "#161c22",
+              "surface-container-highest": "#2f353c",
+              "on-secondary-fixed-variant": "#004f58",
+              "tertiary-fixed": "#e9ddff"
             },
             fontFamily: {
               "headline": ["Space Grotesk"],
@@ -41,19 +72,46 @@
       }
     </script>
     <style>
-      html { scroll-behavior: smooth; }
-      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-      .glass-card { background: rgba(47, 53, 60, 0.4); backdrop-filter: blur(20px); }
-      .bg-grid-pattern { background-image: radial-gradient(circle, #414754 1px, transparent 1px); background-size: 32px 32px; }
-      .kinetic-gradient { background: linear-gradient(135deg, #98cbff 0%, #0097ec 100%); }
+      html {
+        scroll-behavior: smooth;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(47, 53, 60, 0.4);
+        backdrop-filter: blur(20px);
+      }
+      .bg-grid-pattern {
+        background-image: radial-gradient(circle, #414754 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      .kinetic-gradient {
+        background: linear-gradient(135deg, #98cbff 0%, #0097ec 100%);
+      }
+      
+      /* Section Scroll Animation Styles */
       .section-fade {
-        opacity: 0; transform: translateY(40px);
+        opacity: 0;
+        transform: translateY(40px);
         transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         will-change: transform, opacity;
       }
-      .section-fade.visible { opacity: 1; transform: translateY(0); }
-      .section-fade.hidden-above { opacity: 0; transform: translateY(-40px); }
-      .section-fade.hidden-below { opacity: 0; transform: translateY(40px); }
+      .section-fade.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Exit animation (fade out) */
+      .section-fade.hidden-above {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      .section-fade.hidden-below {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      /* Kinetic Card Hover Effects */
       .kinetic-card {
         transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
         transform-style: preserve-3d;
@@ -62,16 +120,43 @@
         transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(152, 203, 255, 0.1);
       }
-      .kinetic-card-img { transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
-      .kinetic-card:hover .kinetic-card-img { transform: scale(1.05) translateZ(20px); }
-      .sidebar-nav-item { transition: all 0.3s ease; position: relative; }
-      .sidebar-nav-item::before {
-        content: ''; position: absolute; left: -2rem; top: 50%; transform: translateY(-50%);
-        width: 0px; height: 2px; background: #98cbff; transition: all 0.3s ease;
+      .kinetic-card-img {
+        transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
-      .sidebar-nav-item.active { color: #98cbff; padding-left: 1rem; }
-      .sidebar-nav-item.active::before { width: 1.5rem; left: -1rem; }
-      @media (min-width: 1024px) { .main-content-offset { margin-left: 280px; } }
+      .kinetic-card:hover .kinetic-card-img {
+        transform: scale(1.05) translateZ(20px);
+      }
+
+      /* Sidebar Navigation Styles */
+      .sidebar-nav-item {
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .sidebar-nav-item::before {
+        content: '';
+        position: absolute;
+        left: -2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0px;
+        height: 2px;
+        background: #98cbff;
+        transition: all 0.3s ease;
+      }
+      .sidebar-nav-item.active {
+        color: #98cbff;
+        padding-left: 1rem;
+      }
+      .sidebar-nav-item.active::before {
+        width: 1.5rem;
+        left: -1rem;
+      }
+      
+      @media (min-width: 1024px) {
+        .main-content-offset {
+          margin-left: 280px;
+        }
+      }
     </style>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary/30">
@@ -94,7 +179,7 @@
             DOWNLOAD RESUME
         </button>
         <div class="text-[10px] font-label text-outline-variant uppercase tracking-[0.2em] leading-relaxed">
-            © 2026 PRECISION<br/>ENGINEERING // V1.0
+            © 2024 PRECISION<br/>ENGINEERING // V1.0
         </div>
     </div>
 </aside>
@@ -133,13 +218,13 @@
                     <button class="kinetic-gradient text-on-primary px-8 py-4 font-headline font-bold tracking-widest rounded-lg flex items-center gap-2 transition-transform hover:-translate-y-1">
                         CONTACT <span class="material-symbols-outlined text-xl">mail</span>
                     </button>
-                    <!-- ✅ 修改 1: GitHub 按钮 -->
-                    <a href="https://github.com/GGsum" target="_blank" class="bg-transparent border border-primary/20 text-primary px-8 py-4 font-headline font-bold tracking-widest rounded-lg hover:border-primary transition-all flex items-center gap-2">
+                    <button class="bg-transparent border border-primary/20 text-primary px-8 py-4 font-headline font-bold tracking-widest rounded-lg hover:border-primary transition-all flex items-center gap-2">
                         GITHUB <span class="material-symbols-outlined text-xl">code</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
+        <!-- Scroll Indicator -->
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
             <span class="text-[10px] font-label tracking-[0.3em] uppercase">Scroll to explore</span>
             <div class="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent"></div>
@@ -150,10 +235,10 @@
         <div class="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
             <div class="relative">
                 <div class="aspect-square bg-surface-container-highest rounded-2xl overflow-hidden group">
-                    <img class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-700 scale-110 group-hover:scale-100" alt="abstract high-tech computer code" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaLdljanqDTVVX2FtGJ0jILAgh5hg8Q67qCQL4s1_DJZKNaaTlqxRmXEsgIUa-F3lb-sDsZLuEA8g11x29UQwU6hntcENthbjKsgxGZqq93D5u7suWZOhouoaOx-c8-d90MK1sLlzM5KkhJt1nnBguZuEruxT1kZnJIOUUpgi2y-9kdB6qjrH_2ARDmtm1FGVqNCf-OErBuEtnZiXR871jGcfq1LIC1tR0nBRQM7eWRgOk7meBEA1sdFTNQJLe4U9lKDzgbEucQI"/>
+                    <img class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-700 scale-110 group-hover:scale-100" data-alt="abstract high-tech computer code on a dark screen with vibrant blue and cyan glowing highlights and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaLdljanqDTVVX2FtGJ0jILAgh5hg8Q67qCQL4s1_DJZKNaaTlqxRmXEsgIUa-F3lb-sDsZLuEA8g11x29UQwU6hntcENthbjKsgxGZqq93D5u7suWZOhouoaOx-c8-d90MK1sLlzM5KkhJt1nnBguZuEruxT1kZnJIOUUpgi2y-9kdB6qjrH_2ARDmtm1FGVqNCf-OErBuEtnZiXR871jGcfq1LIC1tR0nBRQM7eWRgOk7meBEA1sdFTNQJLe4U9lKDzgbEucQI"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
                 </div>
-                <div class="absolute -top-4 -right-4 text-outline-variant font-mono text-xs">+ 35.1796° N, 129.0756° E</div>
+                <div class="absolute -top-4 -right-4 text-outline-variant font-mono text-xs">+ 37.5665° N, 126.9780° E</div>
             </div>
             <div class="flex flex-col gap-8">
                 <div class="text-secondary font-label font-bold tracking-[0.2em] text-sm uppercase">01 // ABOUT ME</div>
@@ -196,22 +281,24 @@
                         <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">HTML5</span>
                         <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">CSS3</span>
                         <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-primary">JAVASCRIPT ES6+</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-primary">TYPESCRIPT</span>
                     </div>
                 </div>
                 <div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6 group hover:translate-y-[-4px] transition-transform">
                     <span class="material-symbols-outlined text-primary text-4xl">layers</span>
-                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Libraries</h3>
+                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Frameworks</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-secondary">LEAFLET</span>
-                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-secondary">TAILWIND CSS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-secondary">REACT.JS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded text-secondary">NEXT.JS</span>
                     </div>
                 </div>
                 <div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6 group hover:translate-y-[-4px] transition-transform">
                     <span class="material-symbols-outlined text-primary text-4xl">palette</span>
-                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Design</h3>
+                    <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Styling</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">FIGMA</span>
-                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">RESPONSIVE</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">SCSS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">STYLED-COMPONENTS</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">TAILWIND CSS</span>
                     </div>
                 </div>
                 <div class="bg-surface-container-low p-8 rounded-xl flex flex-col gap-6 group hover:translate-y-[-4px] transition-transform">
@@ -219,8 +306,8 @@
                     <h3 class="font-headline font-bold text-xl uppercase tracking-wider">Tools</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">GIT</span>
-                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">HBUILDERX</span>
-                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">GITHUB PAGES</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">VS CODE</span>
+                        <span class="px-3 py-1 bg-surface-container-highest text-xs font-label tracking-wide rounded">HBUILDER</span>
                     </div>
                 </div>
             </div>
@@ -234,64 +321,67 @@
                 <h2 class="font-headline font-bold text-5xl text-on-surface">Precision Projects</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1: Busan Food Tour -->
+                
+                <!-- Project 1: Frog Adventure -->
                 <div class="kinetic-card group relative bg-surface-container-low rounded-xl overflow-hidden border border-transparent hover:border-primary/30 transition-all duration-500">
-                    <a class="aspect-video block relative overflow-hidden bg-surface-container-low" href="https://ggsum.github.io/busan-food-tour/" target="_blank">
-                        <img class="kinetic-card-img w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" alt="Busan Food Tour Website" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&auto=format&fit=crop"/>
+                    <!-- 【已修改】图片链接指向 project1.html -->
+                    <a class="aspect-video block relative overflow-hidden bg-surface-container-low" href="project1.html">
+                        <img class="kinetic-card-img w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" data-alt="Screenshot of Frog Adventure game showing vibrant pixel art forest environment with a green frog character mid-jump over dynamic obstacles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8jIh6EH1OMgKUKihd6OgQxDvsWG842MJ_8VafQdRu_JT7S--LcjaOg6671uVCRenxWjN8o2Z06HTPsG9M_idR8X9DUffzillLV7RT05nrfgkpidWyr-1TTP3oL7IYHfDP3cZapwWw7ajnigyFjghknoMbZVMD3pHIgDShv6_33atS1evvAHxsklacJI0bRBitr1Jkx6nTGiAAxtg84AVFu1SRo1dlTnSMs_OUiE_sfs7L-QzugjlOTo6UU0CQ5FB_ZXk96f02y-w"/>
                         <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </a>
                     <div class="p-8">
                         <div class="flex justify-between items-start mb-4">
-                            <a class="hover:text-primary transition-colors" href="https://ggsum.github.io/busan-food-tour/" target="_blank">
-                                <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight uppercase">Busan Food Tour</h3>
+                            <!-- 【已修改】标题链接指向 project1.html -->
+                            <a class="hover:text-primary transition-colors" href="project1.html">
+                                <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight uppercase">Frog Adventure</h3>
                             </a>
                             <div class="flex gap-2">
-                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">JavaScript</span>
-                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Leaflet</span>
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Unity</span>
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">C#</span>
                             </div>
                         </div>
                         <p class="text-on-surface-variant mb-8 line-clamp-2">
-                            AI 기반 부산 맛집 투어 플래너. 공공데이터 API 연동, 이중 필터링, Leaflet 지도 경로 시각화 구현.
+                            A high-stakes 2D platformer featuring a heroic frog navigating perilous paths with precision-tuned physics and responsive controls.
                         </p>
                         <div class="flex gap-4">
-                            <a class="flex-1 kinetic-gradient text-on-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 transition-transform hover:-translate-y-1" href="https://ggsum.github.io/busan-food-tour/" target="_blank">
-                                View Live <span class="material-symbols-outlined text-sm">open_in_new</span>
-                            </a>
-                            <a class="flex-1 bg-transparent border border-primary/20 text-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 hover:border-primary transition-all" href="https://github.com/GGsum/busan-food-tour" target="_blank">
-                                GitHub <span class="material-symbols-outlined text-sm">code</span>
+                            <!-- 【已修改】按钮链接指向 project1.html -->
+                            <a class="flex-1 kinetic-gradient text-on-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 transition-transform hover:-translate-y-1" href="project1.html">
+                                View Details <span class="material-symbols-outlined text-sm">open_in_new</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <!-- Project 2: Self Introduction -->
+
+                <!-- Project 2: Kinetic Platformer -->
                 <div class="kinetic-card group relative bg-surface-container-low rounded-xl overflow-hidden border border-transparent hover:border-primary/30 transition-all duration-500">
-                    <a class="aspect-video block relative overflow-hidden bg-surface-container-low" href="https://ggsum.github.io/Self-introduction/" target="_blank">
-                        <img class="kinetic-card-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Self Introduction Portfolio" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop"/>
+                    <!-- 【已修改】图片链接指向 project2.html -->
+                    <a class="aspect-video block relative overflow-hidden bg-surface-container-low" href="project2.html">
+                        <img class="kinetic-card-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic screenshot of a neon-lit 2D platformer level with a sleek cat-like protagonist jumping across glowing floating platforms in a futuristic city." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2lWtAOx9WAdsfu2o93H5x0HPIH167B24AyBAstu5XaQsthmJPoUG8lUTCeCKAeIRbyfzSS82uqeylU_XL_4tvoTkHfDCBdK4TSMwx1kHmPkHnAf-SRYs0gWjYL0-9SGTML8uTm1qSXHOOIbA_kle44L5oInGlHNA4s-dZuvQjb9baZ006LH11nZIrb8efTy2qygW-HgDihxaZGAP_8VPoNFcA2-JAX15KBPr75gOGNnsVQv-6nSmkc5ZurttIujizrrL8g7rWxeY"/>
                         <div class="absolute inset-0 bg-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </a>
                     <div class="p-8">
                         <div class="flex justify-between items-start mb-4">
-                            <a class="hover:text-primary transition-colors" href="https://ggsum.github.io/Self-introduction/" target="_blank">
-                                <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight uppercase">Kinetic Portfolio</h3>
+                            <!-- 【已修改】标题链接指向 project2.html -->
+                            <a class="hover:text-primary transition-colors" href="project2.html">
+                                <h3 class="font-headline font-bold text-2xl text-on-surface tracking-tight uppercase">Kinetic Platformer</h3>
                             </a>
                             <div class="flex gap-2">
-                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">HTML5</span>
-                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Tailwind</span>
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Unity 2023</span>
+                                <span class="text-[10px] font-label font-bold uppercase border border-outline-variant px-2 py-0.5 rounded text-outline-variant">Neon UI</span>
                             </div>
                         </div>
                         <p class="text-on-surface-variant mb-8 line-clamp-2">
-                            인터랙티브 포트폴리오 웹사이트. 모던한 다크 테마와 키네틱 애니메이션을 활용한 개인 소개 페이지.
+                            A classic 2D platformer reimagined with high-fidelity physics and neon aesthetics, engineered for sub-millisecond input response.
                         </p>
                         <div class="flex gap-4">
-                            <a class="flex-1 kinetic-gradient text-on-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 transition-transform hover:-translate-y-1" href="https://ggsum.github.io/Self-introduction/" target="_blank">
-                                View Live <span class="material-symbols-outlined text-sm">open_in_new</span>
-                            </a>
-                            <a class="flex-1 bg-transparent border border-primary/20 text-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 hover:border-primary transition-all" href="https://github.com/GGsum/Self-introduction" target="_blank">
-                                GitHub <span class="material-symbols-outlined text-sm">code</span>
+                            <!-- 【已修改】按钮链接指向 project2.html -->
+                            <a class="flex-1 kinetic-gradient text-on-primary font-headline font-bold text-xs tracking-widest py-3 rounded uppercase flex items-center justify-center gap-2 transition-transform hover:-translate-y-1" href="project2.html">
+                                View Details <span class="material-symbols-outlined text-sm">open_in_new</span>
                             </a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -308,8 +398,7 @@
                     <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">mail</span>
                     <span class="text-[10px] font-label font-bold tracking-widest uppercase group-hover:text-on-primary">Email</span>
                 </a>
-                <!-- ✅ 修改 2: Contact 区域 GitHub 图标 -->
-                <a class="flex flex-col items-center gap-3 p-6 bg-surface-container-low rounded-xl group hover:bg-primary-container transition-all" href="https://github.com/GGsum" target="_blank">
+                <a class="flex flex-col items-center gap-3 p-6 bg-surface-container-low rounded-xl group hover:bg-primary-container transition-all" href="#">
                     <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">code</span>
                     <span class="text-[10px] font-label font-bold tracking-widest uppercase group-hover:text-on-primary">GitHub</span>
                 </a>
@@ -331,11 +420,10 @@
                 KINETIC ARCHITECT
             </div>
             <div class="font-['Inter'] text-sm tracking-wide text-[#dde3ec] opacity-50">
-                © 2026 KINETIC ARCHITECT // PRECISION ENGINEERING
+                © 2024 KINETIC ARCHITECT // PRECISION ENGINEERING
             </div>
             <div class="flex gap-8">
-                <!-- ✅ 修改 3: Footer 底部 GitHub 链接 -->
-                <a class="text-[#414754] hover:text-[#bdf4ff] transition-colors duration-200 text-sm font-label uppercase tracking-widest" href="https://github.com/GGsum" target="_blank">GitHub</a>
+                <a class="text-[#414754] hover:text-[#bdf4ff] transition-colors duration-200 text-sm font-label uppercase tracking-widest" href="#">GitHub</a>
                 <a class="text-[#414754] hover:text-[#bdf4ff] transition-colors duration-200 text-sm font-label uppercase tracking-widest" href="#">LinkedIn</a>
                 <a class="text-[#414754] hover:text-[#bdf4ff] transition-colors duration-200 text-sm font-label uppercase tracking-widest" href="#">Blog</a>
             </div>
@@ -344,16 +432,26 @@
 </main>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Intersection Observer for Section Transitions (Fade In/Out)
         const sections = document.querySelectorAll('.section-fade');
-        const sectionObserverOptions = { threshold: [0, 0.1, 0.9, 1], rootMargin: '0px' };
+        
+        const sectionObserverOptions = {
+            threshold: [0, 0.1, 0.9, 1],
+            rootMargin: '0px'
+        };
+
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const rect = entry.boundingClientRect;
+                const windowHeight = window.innerHeight;
+                
+                // Determine if the section is mostly in view
                 if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
                     entry.target.classList.add('visible');
                     entry.target.classList.remove('hidden-above', 'hidden-below');
                 } else {
                     entry.target.classList.remove('visible');
+                    // Check if it's exiting above or below
                     if (rect.top < 0) {
                         entry.target.classList.add('hidden-above');
                         entry.target.classList.remove('hidden-below');
@@ -364,7 +462,9 @@
                 }
             });
         }, sectionObserverOptions);
+
         sections.forEach(section => {
+            // Initial state: hidden-below unless it's the hero or currently visible
             if (section.id !== 'hero') {
                 section.classList.add('hidden-below');
             } else {
@@ -372,9 +472,16 @@
             }
             sectionObserver.observe(section);
         });
+
+        // Section Observer for Sidebar Navigation (Persistent Sync)
         const navSections = document.querySelectorAll('section[id]');
         const sidebarItems = document.querySelectorAll('.sidebar-nav-item');
-        const navObserverOptions = { threshold: 0.4, rootMargin: '-10% 0px -10% 0px' };
+
+        const navObserverOptions = {
+            threshold: 0.4,
+            rootMargin: '-10% 0px -10% 0px'
+        };
+
         const navObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -385,7 +492,10 @@
                 }
             });
         }, navObserverOptions);
+
         navSections.forEach(section => navObserver.observe(section));
+
+        // Smooth scroll parallax effect for project images (kept from original)
         window.addEventListener('scroll', () => {
             const projectImgs = document.querySelectorAll('.kinetic-card-img');
             projectImgs.forEach(img => {
@@ -400,4 +510,4 @@
     });
 </script>
 </body>
-</html>
+</html>更新
